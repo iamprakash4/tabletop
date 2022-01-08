@@ -296,12 +296,17 @@ class Dashboard extends PureComponent  {
                         <Box sx={{ flexGrow: 1 }}>
                             <Item>
                                 <Grid container >
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}> 
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}> 
                                         <div style={{marginTop:'15px'}}>
                                             First Name
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                        <div style={{marginTop:'15px'}}>
+                                            :
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <TextField
                                             name = 'first_name'
                                             defaultValue = {this.state.player.first_name}
@@ -311,12 +316,17 @@ class Dashboard extends PureComponent  {
                                             variant="standard"
                                         />
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <div style={{marginTop:'15px'}}>
                                             Last Name
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                        <div style={{marginTop:'15px'}}>
+                                            :
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <TextField
                                             name = 'last_name'
                                             defaultValue = {this.state.player.last_name}
@@ -326,12 +336,17 @@ class Dashboard extends PureComponent  {
                                             variant="standard"
                                         />
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <div style={{marginTop:'15px'}}>
                                             Contact Nameber
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                        <div style={{marginTop:'15px'}}>
+                                            :
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <TextField
                                             name = 'contact_number'
                                             defaultValue = {this.state.player.contact_number}
@@ -341,12 +356,17 @@ class Dashboard extends PureComponent  {
                                             variant="standard"
                                         />
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <div style={{marginTop:'15px'}}>
                                             Game session
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                        <div style={{marginTop:'15px'}}>
+                                            :
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <TextField
                                             id="outlined-select-currency"
                                             select
@@ -394,36 +414,48 @@ class Dashboard extends PureComponent  {
                         <Box sx={{ flexGrow: 1 }}>
                             <Item>
                                 <Grid container >
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}> 
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}> 
                                         <div >
                                             First Name
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                    :
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         {player.first_name}
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <div >
                                             Last Name
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                    :
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         {player.last_name}
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <div >
                                             Contact Nameber
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                    :
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         {player.contact_number}
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         <div >
                                             Game session
                                         </div>
                                     </Grid>
-                                    <Grid item xs={5} md={6} style={{padding:'5px'}}>
+                                    <Grid item xs={2} md={2} style={{padding:'5px'}}> 
+                                    :
+                                    </Grid>
+                                    <Grid item xs={5} md={5} style={{padding:'5px'}}>
                                         {player.game_session}
                                     </Grid>
                                 </Grid>
