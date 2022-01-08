@@ -18,7 +18,15 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { styled } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
+import Edit from '@material-ui/icons/Edit';
+import Delete from '@material-ui/icons/Delete';
+import FilterList from '@material-ui/icons/FilterList';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 const columns = [
     { 
         id: 'id', 
@@ -62,8 +70,14 @@ const gameSession = [
 const rows = [
     {id:1, first_name: "Joe", last_name: "Caputo", contact_number: '07658312387', game_session: 'Black Rain'},
     {id:2, first_name: "Piper", last_name: "Chapman", contact_number: '07142548798', game_session: 'Black Rain'},
-    {id:3, first_name: "Tasha", last_name: "Jefferson", contact_number: '07998987220', game_session: 'Black Rain'},     
-]
+    {id:3, first_name: "Tasha", last_name: "Jefferson", contact_number: '07998987220', game_session: 'Black Rain'},
+    {id:4, first_name: "Gloria", last_name: "Mendoza", contact_number: '07512645873', game_session: 'Black Rain'},
+    {id:5, first_name: "Theodore", last_name: "Bagwell", contact_number: '07561384896', game_session: 'One Last Riddle'},
+    {id:6, first_name: "Brad", last_name: "Bellick", contact_number: '07883256418', game_session: 'One Last Riddle'},
+    {id:7, first_name: "Lincoln", last_name: "Burrows", contact_number: '07112356983', game_session: 'One Last Riddle'},
+    {id:8, first_name: "Fernando", last_name: "Sucre", contact_number: '07963212321', game_session: 'One Last Riddle'},
+    {id:9, first_name: "Sara", last_name: "Tancredi", contact_number: '07954186684', game_session: 'One Last Riddle'},
+   ]
 
 class Dashboard extends PureComponent  {
 
@@ -71,7 +85,7 @@ class Dashboard extends PureComponent  {
         super()
         this.state = {
             page : 0,
-            rowsPerPage : 10,
+            rowsPerPage : 5,
             isAddPlayer : false,
             isDeletePlayer : false,
             isEdit: false,
@@ -80,7 +94,8 @@ class Dashboard extends PureComponent  {
             player:{},
             rows:rows,
             id:rows.length,
-            filterRow :null
+            filterRow :null,
+            filterValue: ''
         }
     }
     
@@ -133,9 +148,9 @@ class Dashboard extends PureComponent  {
                                 {row.game_session}
                               </TableCell>
                               <TableCell key={row.first_name} align={'right'}>
-                                <Button onClick={this.viewPlayerDialogOpen(row)}>View</Button>
-                                <Button onClick={this.editPlayerDialogOpen(row)}>Edit</Button>
-                                <Button onClick ={this.deletePlayerDialogOpen(row)}>delete</Button>
+                                <RemoveRedEye onClick={this.viewPlayerDialogOpen(row)} style={{padding: '5px', cursor:'pointer'}} />
+                                <Edit onClick={this.editPlayerDialogOpen(row)} style={{padding: '5px', cursor:'pointer'}} />
+                                <Delete onClick ={this.deletePlayerDialogOpen(row)} style={{padding: '5px', cursor:'pointer'}} />
                               </TableCell>
                         </TableRow>
                       );
@@ -144,7 +159,7 @@ class Dashboard extends PureComponent  {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
+              rowsPerPageOptions={[5, 10, 25, 100]}
               component="div"
               count={rows.length}
               rowsPerPage={rowsPerPage}
@@ -232,7 +247,8 @@ class Dashboard extends PureComponent  {
         return item.game_session === e.target.value
     })
     this.setState({
-        filterRow : filterRow
+        filterRow : filterRow,
+        filterValue : e.target.value
     })
    }
 
@@ -352,8 +368,8 @@ class Dashboard extends PureComponent  {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.addPlayerClose}>Disagree</Button>
-                    <Button type= {'submit'} autoFocus> Agree </Button>
+                    <Button onClick={this.addPlayerClose}>Cancel</Button>
+                    <Button type= {'submit'} autoFocus> {this.state.isEdit ?  "Update" : "Save" } </Button>
                 </DialogActions>
             </form>
             </Dialog>
@@ -442,39 +458,57 @@ class Dashboard extends PureComponent  {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.deletePlayerClose}>Disagree</Button>
+                    <Button onClick={this.deletePlayerClose}>Cancel</Button>
                     <Button onClick={this.handleDeletePlayer} autoFocus> Agree </Button>
                 </DialogActions>
             </Dialog>
         )
     }
 
+    getHeader =()=>{
+        return(
+            <Grid container justifyContent="flex-end" spacing={2}>
+                <Button onClick={this.addPlayerDialogOpen} endIcon={<AddCircleOutlineIcon />} style={{paddingRight:'30px'}} >Add Player</Button>
+                <FormControl  xs={{width: 620 }} style={{paddingRight:'30px'}}>
+                    <InputLabel >Select game</InputLabel>
+                    <Select
+                        value={this.state.filterValue}
+                        onChange={this.handleFilter}
+                    >
+                        {gameSession.map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                    <FormHelperText>Select game session</FormHelperText>
+                </FormControl>
+                <Button 
+                    onClick={()=>{
+                        this.setState({
+                            filterRow: null,
+                            filterValue:''
+                        })
+                    }}
+                    endIcon={<FilterList />}
+                >
+                    Reset filter
+                </Button>
+            </Grid>
+        )
+    }
+
     render() {
         return (
             <div>
-                Dashboard
-                <Button onClick={this.addPlayerDialogOpen}>Add Player</Button>
-                <TextField
-                    id="outlined-select-currency"
-                    select
-                    name = 'game_session'
-                    defaultValue = {this.state.player.game_session}
-                    onChange = {this.handleFilter}
-                >
-                    {gameSession.map((option) => (
-                        <MenuItem key={option} value={option}>
-                            {option}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <Button onClick={()=>{
-                    this.setState({
-                        filterRow: null
-                    })
-                }}>
-                    Reset filter
-                </Button>
-                {this.getPlayerList()}
+                <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+                    <Grid item xs={12} >
+                        {this.getHeader()}
+                    </Grid>
+                    <Grid item xs={12}>
+                        {this.getPlayerList()}
+                    </Grid>
+                </Grid>
                 {this.addPlayer()}
                 {this.viewPlayer()}
                 {this.deletePlayerDialog()}
