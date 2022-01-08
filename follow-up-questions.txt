@@ -1,0 +1,18 @@
+1) How long, in hours, did you spend on the test (not including learning)?
+Ans:10 hrs
+
+2) Did you have to learn any new languages/technologies? If so, which ones and what
+resources did you use for your learning?
+Ans: I am not learning any new languages/technologies for this task.
+
+3) If you had more time, what further improvements or new features would you add?
+Ans:i can implement login screen, add player profile image if i have more time
+
+4) What did you spend the most time on? What did you find most difficult?
+Ans: i have spend time on matrial UI config due to dependency issue with npm installation.
+so i have used yarn installation. Not faced any difficulties
+
+5) How did you find the test overall? If you have any suggestions on how we can improve the
+test we’d love to hear them.
+Ans: I have tested by manual. my suggestions we can use testing framework like Jest or Mocha
+for testing
